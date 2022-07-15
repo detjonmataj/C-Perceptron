@@ -11,6 +11,5 @@ A demo of the perceptron identifiying the images.
 ## Quick Start
 
 ```console
-    ./build.sh
-    ./run.sh
+    ./buildandrun.sh
 ```
