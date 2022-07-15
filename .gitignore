@@ -50,3 +50,15 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# Ignore samples folder
+samples/
+
+# Ignore executables
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+main
