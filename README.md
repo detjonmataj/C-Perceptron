@@ -1,2 +1,2 @@
-# C-Perceptron
-Implementation of Perceptron (Simplest Neural network by Frank Rosenblatt) in C.
+# C Perceptron
+Implementation of a Simple Perceptron (Simplest Neural network by Frank Rosenblatt) in C. 
