@@ -1,6 +1,6 @@
 # C Perceptron
 
-This repository contains implementation of a simple `Perceptron` in C based on the `Veritasium` [video](https://youtu.be/GVsUOuSjvcg).
+This repository contains implementation of a simple `Perceptron` in `C` based on the `Veritasium` [video](https://youtu.be/GVsUOuSjvcg).
 
 ## Demo
 
