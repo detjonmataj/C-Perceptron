@@ -6,7 +6,7 @@ I also involved [GitHub Copilot](https://github.com/features/copilot/) to help m
 
 ## Demo
 
-This demo is a timelapse that shows perceptron identify and distinguish input images from each other. Each frame shows the results after adjusting weights.
+This demo is a timelapse that shows perceptron identifying and distinguishing input images from each other. Each frame shows the results after adjusting weights.
 
 [View](https://anonfiles.com/vae3ffyayf)
 
