@@ -6,7 +6,7 @@ This repository contains implementation of a simple `Perceptron` in `C` based on
 
 A demo of the perceptron identifiying the images.
 
-[View](https://cdn-103.anonfiles.com/vae3ffyayf/4605818c-1657931046/demo.gif)
+[View](https://anonfiles.com/vae3ffyayf)
 
 ## Quick Start
 
