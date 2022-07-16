@@ -6,7 +6,7 @@ I also involved [GitHub Copilot](https://github.com/features/copilot/) to help m
 
 ## Demo
 
-A demo that shows perceptron identifying images. It is a timelapse of each phase that perceptron has made adjustments.
+This demo is a timelapse that shows perceptron identifying input images. Each frame shows the results after adjusting weights.
 
 [View](https://anonfiles.com/vae3ffyayf)
 
