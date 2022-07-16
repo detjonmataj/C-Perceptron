@@ -7,25 +7,9 @@
 #include <sys/types.h>
 #include <unistd.h>
 
-#define WIDTH 50
-#define HEIGHT 50
-#define PPM_MAX_COLOR 255
-#define PPM_MIN_COLOR 0
-#define NUMBER_OF_SAMPLES 100
-#define SAMPLES_FOLDER_NAME "samples"
-#define RECTANGLE_SAMPLE_NAME "rectangle"
-#define WEIGHT_SAMPLE_NAME "weight"
-#define CIRCLE_SAMPLE_NAME "circle"
-#define BORDER_OFFSET_L_T 0 // left and top
-#define BORDER_OFFSET_R_B 0 // right and bottom
-#define BIAS 10.0
-#define FORWARD_TRAIN_PASSES 100
-#define CHECK_SEED_VALUE 666
-#define TRAIN_SEED_VALUE 69
-#define SAVE_TO_SAMPLES_FOLDER 1
-#define PPM_RANGE 10
+///* Include the configuration header file
+#include "./includes/configs.h"
 
-#define PPM_SCALE_FACTOR 25
 #define scale(x) ((x)*PPM_SCALE_FACTOR)
 #define unscale(x) ((x) / PPM_SCALE_FACTOR)
 #define MIN(a, b) ((a) < (b) ? (a) : (b))
@@ -42,7 +26,8 @@ int random_int_range(int min, int max) {
 void save_layer_ppm(Layer layer, const char *filename) {
 #if SAVE_TO_SAMPLES_FOLDER
     FILE *fp = fopen(filename, "wb");
-    if (fp == NULL) {
+    if (fp == NULL)
+    {
         ///* %m will print the error message from strerror() supplied by errno
         ///* Such as "No such file or directory"
         ///* %m is only supported by GCC (GNU Compiler Collection)
@@ -57,12 +42,14 @@ void save_layer_ppm(Layer layer, const char *filename) {
     fprintf(fp, "P6\n%d %d 255\n", scale(WIDTH), scale(HEIGHT));
 
     ///* Write the layer to the file
-    for (int y = 0; y < scale(HEIGHT); ++y) {
-        for (int x = 0; x < scale(WIDTH); ++x) {
+    for (int y = 0; y < scale(HEIGHT); ++y)
+    {
+        for (int x = 0; x < scale(WIDTH); ++x)
+        {
             float scaler = (layer[unscale(y)][unscale(x)] - PPM_RANGE) / (2.0f * PPM_RANGE);
-            char red = (char) random_int_range(0, 80);
-            char green = (char) floorf(PPM_MAX_COLOR * (1.0f - scaler));
-            char blue = (char) floorf(scaler * PPM_MAX_COLOR);
+            char red = (char)random_int_range(0, 80);
+            char green = (char)floorf(PPM_MAX_COLOR * (1.0f - scaler));
+            char blue = (char)floorf(scaler * PPM_MAX_COLOR);
             char pixel[3] = {red, green, blue};
             ///* Write the pixel to the file
             fwrite(pixel, sizeof(pixel), 1, fp);
@@ -234,7 +221,7 @@ void random_circle_layer(Layer layer) {
     memset(layer, 0x0, sizeof(Layer));
 
     int center_x = random_int_range(BORDER_OFFSET_L_T,
-                                    WIDTH - 1 - BORDER_OFFSET_R_B);  ///* X coordinate of the center of the circle
+                                    WIDTH - 1 - BORDER_OFFSET_R_B); ///* X coordinate of the center of the circle
     int center_y = random_int_range(BORDER_OFFSET_L_T,
                                     HEIGHT - 1 - BORDER_OFFSET_R_B); ///* Y coordinate of the center of the circle
 
@@ -276,7 +263,12 @@ int train_pass(Layer inputs, Layer weights) {
         if (forward(inputs, weights) > BIAS) {
             subtract_input_from_weight(inputs, weights);
             snprintf(file_path, sizeof(file_path),
-                     SAMPLES_FOLDER_NAME "/ppm/" WEIGHT_SAMPLE_NAME "s/" WEIGHT_SAMPLE_NAME "-%03d.ppm", count++);
+                     SAMPLES_FOLDER_NAME
+            "/ppm/"
+            WEIGHT_SAMPLE_NAME
+            "s/"
+            WEIGHT_SAMPLE_NAME
+            "-%03d.ppm", count++);
             ///! printf("[INFO] saving %s\n", file_path);
             save_layer_ppm(weights, file_path);
             adjusted++;
@@ -287,7 +279,12 @@ int train_pass(Layer inputs, Layer weights) {
         if (forward(inputs, weights) < BIAS) {
             add_input_to_weight(inputs, weights);
             snprintf(file_path, sizeof(file_path),
-                     SAMPLES_FOLDER_NAME "/ppm/" WEIGHT_SAMPLE_NAME "s/" WEIGHT_SAMPLE_NAME "-%03d.ppm", count++);
+                     SAMPLES_FOLDER_NAME
+            "/ppm/"
+            WEIGHT_SAMPLE_NAME
+            "s/"
+            WEIGHT_SAMPLE_NAME
+            "-%03d.ppm", count++);
             ///! printf("[INFO] saving %s\n", file_path);
             save_layer_ppm(weights, file_path);
             adjusted++;
