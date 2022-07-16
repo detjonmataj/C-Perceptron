@@ -6,7 +6,7 @@ I also involved [GitHub Copilot](https://github.com/features/copilot/) to help m
 
 ## Demo
 
-A demo of the perceptron identifiying the images.
+A demo that shows perceptron identifying images. It is a timelapse of each phase that perceptron has made adjustments.
 
 [View](https://anonfiles.com/vae3ffyayf)
 
